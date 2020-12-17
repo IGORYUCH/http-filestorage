@@ -1,6 +1,6 @@
 from flask import Flask, send_file, request, make_response, jsonify
-from os.path import join, exists
 from os import mkdir, listdir, remove, rmdir
+from os.path import join, exists
 from hashlib import md5
 from io import BytesIO
 from settings import *
@@ -24,12 +24,15 @@ def download_file():
         hash = request.headers['Hash']
         prefix = hash[:2]
         absolute_filename = join(app.config['UPLOAD_FOLDER'], prefix, hash)
+
         if exists(absolute_filename):
             with open(absolute_filename, 'rb') as stored_file:
                 data = stored_file.read()
             filename = data[-name_length:].decode('utf-8').strip()
+
             data_stream = BytesIO(data[:-name_length])
             data_stream.seek(0)
+
             return send_file(data_stream, attachment_filename=filename, as_attachment=True)
         else:
             return make_response(jsonify({'error': 'no such file'}), 404)
@@ -44,10 +47,13 @@ def delete_file():
         prefix = hash[:2]
         folder = join(app.config['UPLOAD_FOLDER'], prefix)
         absolute_filename = join(folder, hash)
+
         if exists(absolute_filename):
             remove(absolute_filename)
+
             if not listdir(folder):
                 rmdir(folder)
+
             return make_response(jsonify({hash: 'deleted'}), 200)
         else:
             return make_response(jsonify({'error': 'no such file'}), 404)
@@ -65,14 +71,17 @@ def upload_file():
         data = file_storage.read()
         hash = md5(data).hexdigest()
         prefix = hash[:2]
+
         folder = join(app.config['UPLOAD_FOLDER'], prefix)
         absolute_filename = join(folder, hash)
 
         if not exists(absolute_filename):
             if not exists(folder):
                 mkdir(folder)
+
             adjusted_filename = b' ' * (name_length - len(bytes_filename)) + bytes_filename
             data = data + adjusted_filename
+
             with open(absolute_filename, 'wb') as stored_file:
                 stored_file.write(data)
             response[filename] = hash
@@ -86,11 +95,3 @@ name_length = app.config['ADJUSTED_NAME_LENGTH']
 
 if __name__ == '__main__':
     app.run()
-
-
-#todo:
-# имя файла заменяется на его хеш. Нужно как то хранить настоящее имя и расширение +
-# как то через rest передавать/загружать сам файл +
-# сделать тесты +
-# добавить settings.py как в restapi +
-# демонизация
