@@ -63,10 +63,22 @@ sudo systemctl status filestorage
  Main PID: 481 (gunicorn)
  ```
 # Использование
-POST /api/file/upload
-DELETE /api/file/delete
-GET /api/file/download
- 
+
+Загрузить файл
+```
+files = {filename: (filename, file_stream, 'multipart/form-data')}
+result = requests.post('http://{0}/api/file/upload'.format(HOSTNAME), files=files)
+```
+Скачать файл
+```
+headers = {'Hash': 'file hash'}
+result = requests.delete('http://{0}/api/file/delete'.format(HOSTNAME), headers=headers)
+```
+Удалить файл
+```
+headers = {'Hash':'file hash'}
+result = requests.get('http://{0}/api/file/download'.format(HOSTNAME), headers=headers)
+```
 # Тесты
 Установите pytest для запуска тестов
  ```
