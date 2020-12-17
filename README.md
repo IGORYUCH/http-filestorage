@@ -38,10 +38,10 @@ WorkingDirectory=/home/username/filestorage
 Environment="PATH=/home/username/filestorage/filestorageenv/bin"
 ExecStart=/home/username/filestorage/filestorageenv/bin/gunicorn -w 2 -b 0.0.0.0:8080 wsgi:app
 ```
-* user поменяйте имя пользователя на своего
-* WorkingDirectory поменяйте на путь, в который скачано приложение
-* Environment поменяйте на путь вашей виртуальной среды
-* ExecStart поменяйте на путь в который установился gunicorn в виртуальной среде
+* `user` поменяйте имя пользователя на своего
+* `WorkingDirectory` поменяйте на путь, в который скачано приложение
+* `Environment` поменяйте на путь вашей виртуальной среды
+* `ExecStart` поменяйте на путь в который установился gunicorn в виртуальной среде
 
 Запустите службу 
 ```
