@@ -27,7 +27,7 @@ sudo cp filestorage.services /etc/systemd/system/filestorage.servise
 ```
 Откройте файл /etc/systemd/system/filestorage.servise
 ```
-vim /etc/systemd/system/filestorage.servise
+sudo vim /etc/systemd/system/filestorage.servise
 ```
 В нем будет содержимое:
 ```
