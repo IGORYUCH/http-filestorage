@@ -62,6 +62,11 @@ sudo systemctl status filestorage
    Active: active (running) since Thu 2020-12-17 23:15:56 CST; 50min ago
  Main PID: 481 (gunicorn)
  ```
+# Использование
+POST /api/file/upload
+DELETE /api/file/delete
+GET /api/file/download
+ 
 # Тесты
 Установите pytest для запуска тестов
  ```
