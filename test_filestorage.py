@@ -4,7 +4,7 @@ from os import urandom
 from random import choices, randint
 from io import BytesIO
 
-HOSTNAME = 'localhost:80'
+HOSTNAME = '149.129.174.214:8080'
 
 
 def test_upload_hash_returned():

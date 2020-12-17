@@ -90,7 +90,7 @@ def upload_file():
     return make_response(jsonify(response), 200)
 
 
-app.config.from_object(DevelopmentConfig)
+app.config.from_object(ProductionConfig)
 name_length = app.config['ADJUSTED_NAME_LENGTH']
 
 if __name__ == '__main__':

@@ -3,11 +3,11 @@ Description=Gunicorn instance to server filestorage
 After=network.target
 
 [Service]
-user=root
+user=username
 Group=www-data
-WorkingDirectory=/home/plebei/filestorage
-Environment="PATH=/home/plebei/filestorage/filestorageenv/bin"
-ExecStart=/home/plebei/filestorage/filestorageenv/bin/gunicorn -w 2 -b 0.0.0.0:8080 wsgi:app
+WorkingDirectory=/home/username/filestorage
+Environment="PATH=/home/username/filestorage/filestorageenv/bin"
+ExecStart=/home/username/filestorage/filestorageenv/bin/gunicorn -w 2 -b 0.0.0.0:8080 wsgi:app
 
 [Install]
 WantedBy=multi-user.target
