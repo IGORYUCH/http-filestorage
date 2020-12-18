@@ -51,7 +51,7 @@ sudo systemctl start filestorage
 ```
 sudo systemctl enable filestorage
 ```
-Проверте состояние запущенной службы
+Проверьте состояние запущенной службы
 ```
 sudo systemctl status filestorage
 ```
