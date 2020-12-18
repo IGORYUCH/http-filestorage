@@ -21,9 +21,9 @@ source /filestorageenv/bin/activate
 ```
 pip3 install flask gunicorn
 ```
-Скопируйте filestorage.services в каталог системы служб linux
+Скопируйте filestorage.service в каталог системы служб linux
 ```
-sudo cp filestorage.services /etc/systemd/system/filestorage.servise
+sudo cp filestorage.service /etc/systemd/system/filestorage.servise
 ```
 Откройте файл /etc/systemd/system/filestorage.servise
 ```
